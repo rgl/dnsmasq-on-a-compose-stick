@@ -1,0 +1,14 @@
+# see https://github.com/compose-spec/compose-spec/blob/master/spec.md
+services:
+  dnsmasq:
+    build: .
+    volumes:
+      - ./dnsmasq.conf:/etc/dnsmasq.conf:ro
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+  meshcommander:
+    build:
+      dockerfile: Dockerfile.meshcommander
+    ports:
+      - 4000:4000
